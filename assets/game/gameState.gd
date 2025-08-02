@@ -12,18 +12,16 @@ var inputActive : bool = false:
 	set(value):
 		if (inputActive == value): return;
 		inputActive = value;
-		_updateMouseVisibility();
 var isUsingController : bool = false:
 	set(value):
 		if (isUsingController == value): return;
 		isUsingController = value;
-		_updateMouseVisibility();
+
 
 ################################################################################
 # Common functions.
 
-func isMouseLocked() -> bool:
-	return inputActive || isUsingController;
+
 	
 func isPaused() -> bool:
 	return get_tree().paused;
@@ -61,12 +59,3 @@ func _input(event: InputEvent) -> void:
 	elif (event is InputEventJoypadButton or InputEventJoypadMotion):
 		isUsingController = true;
 	
-func _updateMouseVisibility() -> void:
-	var locked : bool = isMouseLocked();
-	
-	# Skip if already equal to lock status.
-	var currentLockStatus = Input.mouse_mode != Input.MOUSE_MODE_VISIBLE;
-	if (locked == currentLockStatus): return;
-	
-	# Set mouse lock status.
-	Input.mouse_mode =  Input.MOUSE_MODE_CAPTURED if locked else Input.MOUSE_MODE_VISIBLE;
