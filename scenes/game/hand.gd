@@ -2,7 +2,6 @@ extends Node
 
 func _ready() -> void:
 	refreshJigsawConnections();
-		
 
 func refreshJigsawConnections() -> void:
 	for piece in get_tree().get_nodes_in_group("jigsawPieces"):
