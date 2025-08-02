@@ -11,7 +11,7 @@
 [node name="GameMenu" parent="CanvasLayer" instance=ExtResource("1_sul5r")]
 
 [node name="JigsawPiece" parent="." instance=ExtResource("2_0sr1o")]
-position = Vector2(167, 45)
+position = Vector2(323, 187)
 
 [node name="Hand" type="Node" parent="."]
 script = ExtResource("3_0sr1o")
