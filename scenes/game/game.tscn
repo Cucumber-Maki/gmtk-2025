@@ -1,12 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://cea0kc0y5xkmo"]
+[gd_scene load_steps=7 format=3 uid="uid://cea0kc0y5xkmo"]
 
 [ext_resource type="PackedScene" uid="uid://gqj1i4gumrvl" path="res://assets/menus/gameMenu/gameMenu.tscn" id="1_sul5r"]
-[ext_resource type="PackedScene" uid="uid://bi8nlpd0um1b8" path="res://assets/jam/autoRestart/autoRestart.tscn" id="2_7h61r"]
+[ext_resource type="Script" uid="uid://clc65bxd6ouav" path="res://assets/game/jigsawPiece/jigsawPiece.gd" id="2_7h61r"]
+[ext_resource type="Script" uid="uid://ccqvnjjr3awv1" path="res://scenes/game/hand.gd" id="3_0sr1o"]
 
-[node name="Game" type="Node3D"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0sr1o"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h61r"]
+size = Vector2(40, 40)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7h61r"]
+size = Vector2(40, 40)
+
+[node name="Game" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameMenu" parent="CanvasLayer" instance=ExtResource("1_sul5r")]
 
-[node name="AutoRestart" parent="CanvasLayer" instance=ExtResource("2_7h61r")]
+[node name="JigsawPiece" type="Area2D" parent="." groups=["jigsawPieces"]]
+position = Vector2(167, 45)
+script = ExtResource("2_7h61r")
+
+[node name="Sprite" type="Sprite2D" parent="JigsawPiece"]
+texture = SubResource("PlaceholderTexture2D_0sr1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JigsawPiece"]
+shape = SubResource("RectangleShape2D_7h61r")
+
+[node name="JigsawPiece2" type="Area2D" parent="." groups=["jigsawPieces"]]
+position = Vector2(72, 33)
+script = ExtResource("2_7h61r")
+
+[node name="Sprite" type="Sprite2D" parent="JigsawPiece2"]
+modulate = Color(0, 0, 1, 1)
+texture = SubResource("PlaceholderTexture2D_7h61r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JigsawPiece2"]
+shape = SubResource("RectangleShape2D_7h61r")
+
+[node name="Hand" type="Node" parent="."]
+script = ExtResource("3_0sr1o")
+
+[connection signal="input_event" from="JigsawPiece" to="JigsawPiece" method="_on_input_event"]
+[connection signal="input_event" from="JigsawPiece2" to="JigsawPiece2" method="_on_input_event"]
