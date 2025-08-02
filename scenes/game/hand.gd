@@ -9,9 +9,9 @@ func refreshJigsawConnections() -> void:
 		#if is_connected(piece.grabbed)
 		piece.grabbed.connect(grabPiece);
 		
-var currentlyHeldPiece : JigsawPiece;
+var currentlyHeldPiece : JigsawPieceBase;
 var actionTaken : bool = false;
-func grabPiece(piece : JigsawPiece) -> void:
+func grabPiece(piece : JigsawPieceBase) -> void:
 	if currentlyHeldPiece == null and !actionTaken:
 		currentlyHeldPiece = piece;
 		currentlyHeldPiece.getGrabbed();

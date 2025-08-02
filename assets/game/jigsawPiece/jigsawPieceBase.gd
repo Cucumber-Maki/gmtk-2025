@@ -1,4 +1,4 @@
-class_name JigsawPiece
+class_name JigsawPieceBase
 extends Area2D
 
 enum Colours{
@@ -23,6 +23,7 @@ var connectors = []
 var currentState : PieceState;
 func _ready() -> void:
 	currentState = PieceState.unconnected;
+	add_to_group("jigsawPieces")
 	
 func _process(delta: float) -> void:
 	match currentState:
@@ -33,7 +34,7 @@ func _process(delta: float) -> void:
 		PieceState.held:
 			global_position = get_global_mouse_position();
 			
-signal grabbed(JigsawPiece);
+signal grabbed(JigsawPieceBase);
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
