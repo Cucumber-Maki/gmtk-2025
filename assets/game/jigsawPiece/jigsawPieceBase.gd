@@ -18,11 +18,15 @@ enum PieceState{
 	connected,
 	held,
 }
+
+# Connectors specified in clockwise order
 var connectors = []
 
 var currentState : PieceState;
 func _ready() -> void:
 	currentState = PieceState.unconnected;
+	initConnectors()
+	assembleSprites()
 	add_to_group("jigsawPieces")
 	
 func _process(delta: float) -> void:
@@ -45,3 +49,30 @@ func getGrabbed() -> void:
 	
 func getDropped() -> void:
 	currentState = PieceState.unconnected;
+
+func initConnectors():
+	var rng = RandomNumberGenerator.new()
+	for i in 4:
+		var connectorIndex := rng.randi_range(0, ConnectorState.size() - 1)
+		var connectorType: ConnectorState = ConnectorState.values()[connectorIndex]
+		connectors.append(connectorType)
+
+
+
+func assembleSprites():
+	var connectorSpriteFrames = $AnimatedSprite2D.sprite_frames
+	for i in range(0, connectors.size()):
+		var connectorType = connectors[i]
+		var texture = connectorSpriteFrames.get_frame_texture(
+			"default",
+			connectorType
+		)
+		
+		var rotation = deg_to_rad(90 * i)
+		var yOffset = -(texture.get_width() / 2)
+		
+		var sprite := Sprite2D.new()
+		sprite.texture = texture
+		sprite.position = Vector2(0, yOffset).rotated(rotation)
+		sprite.rotate(rotation)
+		self.add_child(sprite)
