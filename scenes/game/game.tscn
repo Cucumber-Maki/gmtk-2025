@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cea0kc0y5xkmo"]
+[gd_scene load_steps=5 format=3 uid="uid://cea0kc0y5xkmo"]
 
+[ext_resource type="PackedScene" uid="uid://2ac3swjdcvyg" path="res://assets/menus/upgradePage/upgradeRow.tscn" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://43nivlwe34mu" path="res://assets/game/jigsawPiece/jigsawPieceBase.tscn" id="2_0sr1o"]
 [ext_resource type="Script" uid="uid://ccqvnjjr3awv1" path="res://scenes/game/hand.gd" id="3_0sr1o"]
 
@@ -33,10 +34,9 @@ theme = SubResource("Theme_7h61r")
 [node name="UpgradePanel" type="TabContainer" parent="CanvasLayer/HSplitContainer"]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Upgrades" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.661453, 0.995601, 1, 1)
@@ -49,11 +49,72 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+dragging_enabled = false
 
-[node name="ItemList" type="ItemList" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer"]
+[node name="ResourceCounts" type="GridContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="NubbinsNumber" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="NubbinsLabel" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Nubbins"
+
+[node name="NibletsNumber" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="NibletsLabel" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Niblets"
+
+[node name="UpgradeButtons" type="VBoxContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer"]
+layout_mode = 2
+
+[node name="UpgradeRowTitle" type="HBoxContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons/UpgradeRowTitle"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrade Name"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons/UpgradeRowTitle"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Cost"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons/UpgradeRowTitle"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Level"
+horizontal_alignment = 1
+
+[node name="UpgradeRow" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons" instance=ExtResource("1_0sr1o")]
+layout_mode = 2
+
+[node name="UpgradeRow2" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons" instance=ExtResource("1_0sr1o")]
+layout_mode = 2
+
+[node name="UpgradeRow3" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons" instance=ExtResource("1_0sr1o")]
 layout_mode = 2
 
 [node name="Jigsaw" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.661453, 0.995601, 1, 1)
