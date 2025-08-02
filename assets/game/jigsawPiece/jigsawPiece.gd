@@ -39,8 +39,8 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if event.pressed:
 			grabbed.emit(self)
 			
-func getGrabbed():
+func getGrabbed() -> void:
 	currentState = PieceState.held;
 	
-func getDropped():
+func getDropped() -> void:
 	currentState = PieceState.unconnected;

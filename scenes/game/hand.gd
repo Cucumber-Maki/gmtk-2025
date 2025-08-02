@@ -4,14 +4,14 @@ func _ready() -> void:
 	refreshJigsawConnections();
 		
 
-func refreshJigsawConnections():
+func refreshJigsawConnections() -> void:
 	for piece in get_tree().get_nodes_in_group("jigsawPieces"):
 		#if is_connected(piece.grabbed)
 		piece.grabbed.connect(grabPiece);
 		
 var currentlyHeldPiece : JigsawPiece;
 var actionTaken : bool = false;
-func grabPiece(piece : JigsawPiece):
+func grabPiece(piece : JigsawPiece) -> void:
 	if currentlyHeldPiece == null and !actionTaken:
 		currentlyHeldPiece = piece;
 		currentlyHeldPiece.getGrabbed();
