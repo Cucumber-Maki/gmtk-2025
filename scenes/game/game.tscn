@@ -2,16 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://xy3aopgi2d6r" path="res://assets/menus/upgradePage/upgradeButtons.tscn" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://bbifpjh38o0od" path="res://assets/jigsaw/hand/hand.tscn" id="1_7h61r"]
+[ext_resource type="Theme" uid="uid://8jm73pmaw63g" path="res://assets/menus/_theme/theme.tres" id="1_87uf6"]
 [ext_resource type="PackedScene" uid="uid://43nivlwe34mu" path="res://assets/jigsaw/jigsawPiece/jigsawPieceBase.tscn" id="2_0sr1o"]
 [ext_resource type="Material" uid="uid://dmggogjr4bb5k" path="res://assets/jigsaw/hand/handMaterial.tres" id="2_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://bxc6gcyp5h2hr" path="res://assets/gameLoop/log/log.tscn" id="3_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://81ra0g3pbd5y" path="res://assets/gameLoop/pillar/pillar.tscn" id="4_kelw5"]
 [ext_resource type="PackedScene" uid="uid://df8vlpa7sp0y4" path="res://assets/gameLoop/battle/battle.tscn" id="6_5i0tg"]
-
-[sub_resource type="Theme" id="Theme_7h61r"]
-HBoxContainer/constants/separation = 0
-HSplitContainer/constants/separation = 0
-VBoxContainer/constants/separation = 0
 
 [node name="Game" type="Node2D"]
 
@@ -24,30 +20,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.505344, 0.505344, 0.505344, 1)
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
-[node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_7h61r")
 
-[node name="UpgradePanel" type="TabContainer" parent="CanvasLayer/HSplitContainer"]
+[node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_87uf6")
+
+[node name="UpgradePanel" type="TabContainer" parent="CanvasLayer/MarginContainer/HSplitContainer"]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 current_tab = 1
 
-[node name="Upgrades" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]
+[node name="Upgrades" type="ColorRect" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.661453, 0.995601, 1, 1)
 metadata/_tab_index = 0
 
-[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades"]
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,76 +54,69 @@ grow_horizontal = 2
 grow_vertical = 2
 dragging_enabled = false
 
-[node name="ResourceCounts" type="GridContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer"]
+[node name="ResourceCounts" type="GridContainer" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="NubbinsNumber" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+[node name="NubbinsNumber" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="NubbinsLabel" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+[node name="NubbinsLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Nubbins"
 
-[node name="NibletsNumber" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+[node name="NibletsNumber" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="NibletsLabel" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
+[node name="NibletsLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/ResourceCounts"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Niblets"
 
-[node name="UpgradeButtons" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer" instance=ExtResource("1_0sr1o")]
+[node name="UpgradeButtons" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer" instance=ExtResource("1_0sr1o")]
 layout_mode = 2
 
-[node name="Jigsaw" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]
+[node name="Jigsaw" type="ColorRect" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel"]
 material = ExtResource("2_bdhmt")
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.0666667, 0.0666667, 0.2, 1)
 metadata/_tab_index = 1
 
-[node name="Hand" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw" instance=ExtResource("1_7h61r")]
+[node name="Hand" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw" instance=ExtResource("1_7h61r")]
 layout_mode = 1
 backgroundMat = ExtResource("2_bdhmt")
 
-[node name="JigsawPiece" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
+[node name="JigsawPiece" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(23.035, 64)
 
-[node name="JigsawPiece2" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
+[node name="JigsawPiece2" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(40, 121)
 
-[node name="JigsawPiece3" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
+[node name="JigsawPiece3" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(116, 121)
 
-[node name="JigsawPiece4" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
+[node name="JigsawPiece4" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(116, 67)
 
-[node name="JigsawPiece5" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
+[node name="JigsawPiece5" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(23.035, 64)
 
-[node name="Coffee" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]
+[node name="Fool" type="ColorRect" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.661453, 0.995601, 1, 1)
 metadata/_tab_index = 2
 
-[node name="Fool" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]
-visible = false
-layout_mode = 2
-mouse_filter = 1
-color = Color(0.661453, 0.995601, 1, 1)
-metadata/_tab_index = 3
-
-[node name="Button" type="Button" parent="CanvasLayer/HSplitContainer/UpgradePanel/Fool"]
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Fool"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -137,7 +128,7 @@ offset_bottom = 74.0
 grow_horizontal = 2
 text = "Reset"
 
-[node name="ItemList" type="ItemList" parent="CanvasLayer/HSplitContainer/UpgradePanel/Fool"]
+[node name="ItemList" type="ItemList" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Fool"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,16 +137,21 @@ offset_top = 118.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HSplitContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Log" parent="CanvasLayer/HSplitContainer/VBoxContainer" instance=ExtResource("3_0sr1o")]
+[node name="Log" parent="CanvasLayer/MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("3_0sr1o")]
+custom_minimum_size = Vector2(0, 135)
 layout_mode = 2
+color = Color(0.133333, 0.133333, 0.266667, 1)
 
-[node name="Pillar" parent="CanvasLayer/HSplitContainer/VBoxContainer" instance=ExtResource("4_kelw5")]
+[node name="Pillar" parent="CanvasLayer/MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("4_kelw5")]
+custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
+color = Color(0.266667, 0.266667, 0.4, 1)
 floors = Array[float]([10.0, 40.0, 50.0, 60.0])
 
-[node name="Battle" parent="CanvasLayer/HSplitContainer/VBoxContainer" instance=ExtResource("6_5i0tg")]
+[node name="Battle" parent="CanvasLayer/MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("6_5i0tg")]
 layout_mode = 2
+color = Color(0.133333, 0.133333, 0.266667, 1)

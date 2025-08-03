@@ -9,16 +9,19 @@ var currentEnemy = 0;
 var currentFloorEnemies : Array[Enemy.Type] = [];
 
 @export var highlightStyleBox : StyleBox;
+@export var barBackgroundBox : StyleBox;
+@export var barFillBox : StyleBox;
 
 @onready var pillarParent = $VSplitContainer/ScrollContainer/VBoxContainer;
-
 
 func _ready() -> void:
 	s_instance = self;
 	#
 	progressBar = ProgressBar.new();
 	progressBar.set_anchors_preset(Control.PRESET_FULL_RECT);
-	progressBar.add_theme_font_size_override("font_size", 11);
+	progressBar.add_theme_font_size_override("font_size", 29);
+	progressBar.add_theme_stylebox_override("background", barBackgroundBox);
+	progressBar.add_theme_stylebox_override("fill", barFillBox);
 	progressBar.max_value = 1.0;
 	#
 	generateEnemies();
