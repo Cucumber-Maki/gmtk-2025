@@ -1,7 +1,7 @@
 extends HBoxContainer
 
 
-
+var _upgradeName : String;
 var _currentCost : float;
 var _costMultiplier : float;
 var _requiredResource : Resources.UpgradeResource;
@@ -20,6 +20,7 @@ func initialSetup(buttonName : String,
 	$Button.tooltip_text = buttonHover;
 	$Button.button_up.connect(effect);
 	
+	_upgradeName = buttonName;
 	_currentCost = baseCost;
 	_costMultiplier = costMultiplier;
 	_requiredResource = resource;
@@ -37,6 +38,7 @@ func completePurchase():
 	_currentCost = _currentCost*_costMultiplier;
 	increaseLevel()
 	refreshCost()
+	Log.s_instance.logText("Bought "+_upgradeName)
 
 var _level : int = 0;
 func increaseLevel():
