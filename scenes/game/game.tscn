@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cea0kc0y5xkmo"]
+[gd_scene load_steps=9 format=3 uid="uid://cea0kc0y5xkmo"]
 
 [ext_resource type="PackedScene" uid="uid://xy3aopgi2d6r" path="res://assets/menus/upgradePage/upgradeButtons.tscn" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://bbifpjh38o0od" path="res://assets/jigsaw/hand/hand.tscn" id="1_7h61r"]
 [ext_resource type="Theme" uid="uid://8jm73pmaw63g" path="res://assets/menus/_theme/theme.tres" id="1_87uf6"]
-[ext_resource type="PackedScene" uid="uid://43nivlwe34mu" path="res://assets/jigsaw/jigsawPiece/jigsawPieceBase.tscn" id="2_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://c5oi5ufvsk0n5" path="res://assets/menus/upgradePage/resourceCounts.tscn" id="2_2a8rs"]
 [ext_resource type="Material" uid="uid://dmggogjr4bb5k" path="res://assets/jigsaw/hand/handMaterial.tres" id="2_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://bxc6gcyp5h2hr" path="res://assets/gameLoop/log/log.tscn" id="3_0sr1o"]
@@ -41,9 +40,10 @@ layout_mode = 2
 [node name="UpgradePanel" type="TabContainer" parent="CanvasLayer/MarginContainer/HSplitContainer"]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Upgrades" type="ColorRect" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 color = Color(0.661453, 0.995601, 1, 1)
@@ -65,7 +65,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Jigsaw" type="ColorRect" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel"]
-visible = false
 material = ExtResource("2_bdhmt")
 layout_mode = 2
 mouse_filter = 1
@@ -75,21 +74,6 @@ metadata/_tab_index = 1
 [node name="Hand" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw" instance=ExtResource("1_7h61r")]
 layout_mode = 1
 backgroundMat = ExtResource("2_bdhmt")
-
-[node name="JigsawPiece" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
-position = Vector2(23.035, 64)
-
-[node name="JigsawPiece2" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
-position = Vector2(40, 121)
-
-[node name="JigsawPiece3" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
-position = Vector2(116, 121)
-
-[node name="JigsawPiece4" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
-position = Vector2(116, 67)
-
-[node name="JigsawPiece5" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
-position = Vector2(23.035, 64)
 
 [node name="Fool" type="ColorRect" parent="CanvasLayer/MarginContainer/HSplitContainer/UpgradePanel"]
 visible = false

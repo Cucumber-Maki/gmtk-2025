@@ -73,6 +73,7 @@ func getNextEnemy() -> Enemy:
 
 func goUpFloor() -> void:
 	Log.s_instance.logText("Floor %d cleared." % (currentFloor + 1));
+	HandContainer.s_instance.addJigsaw();
 	
 	if (currentFloor < floors.size() - 1):
 		currentFloor += 1;

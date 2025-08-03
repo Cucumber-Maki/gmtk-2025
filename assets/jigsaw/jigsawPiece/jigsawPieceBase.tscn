@@ -8,6 +8,7 @@
 size = Vector2(64, 64)
 
 [node name="JigsawPiece" type="Area2D"]
+z_index = 2
 script = ExtResource("1_4vjdq")
 
 [node name="Collider" type="CollisionShape2D" parent="."]

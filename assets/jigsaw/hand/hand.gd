@@ -11,8 +11,8 @@ func _ready() -> void:
 
 func refreshJigsawConnections() -> void:
 	for piece in get_tree().get_nodes_in_group("jigsawPieces"):
-		#if is_connected(piece.grabbed)
-		piece.grabbed.connect(grabPiece);
+		if !piece.is_connected("grabbed", grabPiece):
+			piece.grabbed.connect(grabPiece);
 		
 var currentlyHeldPiece : JigsawPieceBase;
 var targetHeldPiece : JigsawPieceBase;
@@ -53,6 +53,15 @@ func getMutliplierOfColor(color : JigsawPieceBase.Colors) -> float:
 	for piece in pieces:
 		piecesMultiplier += piece.activeMultiplier;
 	return piecesMultiplier;
+	
+func addJigsaw():
+	var jigsaw := preload("res://assets/jigsaw/jigsawPiece/jigsawPieceBase.tscn").instantiate();
+	self.add_child(jigsaw);
+	var r := get_rect();
+	jigsaw.position = Vector2(r.position.x + randf_range(0, r.size.x), r.position.y + randf_range(0, r.size.y));	
+	if (Log.s_instance != null):
+		Log.s_instance.logText("You have a new jigsaw piece!", Color.YELLOW);
+	refreshJigsawConnections();
 
 ######################################################################################################
 	

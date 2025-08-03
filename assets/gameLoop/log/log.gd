@@ -14,7 +14,7 @@ func clearLog()  -> void:
 		logParent.remove_child(n);
 		n.queue_free();
 	
-func logText(text : String) -> void:
+func logText(text : String, color : Color = Color.WHITE) -> void:
 	var label : Label;
 	if (logParent.get_child_count() >= maxLength):
 		label = logParent.get_child(logParent.get_child_count() - 1);
@@ -22,5 +22,6 @@ func logText(text : String) -> void:
 		label = Label.new();
 		logParent.add_child(label);
 	
+	label.add_theme_color_override("font_color", color);
 	label.text = text;
 	logParent.move_child(label, 0);
