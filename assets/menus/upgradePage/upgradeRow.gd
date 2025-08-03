@@ -18,7 +18,11 @@ func initialSetup(buttonName : String,
 	effect : Callable) -> void:
 	$Button.text = buttonName;
 	$Button.tooltip_text = buttonHover;
-	$Button.button_up.connect(effect);
+	$Button.button_up.connect((func(effect : Callable):
+		match (effect.get_argument_count()):
+			0: effect.call();
+			1: effect.call(self);
+	).bind(effect));
 	
 	_upgradeName = buttonName;
 	_currentCost = baseCost;

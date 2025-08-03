@@ -18,6 +18,8 @@ var currentEnemyMaxHealth : float = 0.0;
 @export var playerRegenTime : float = 4.0;
 @export var playerRegenActive : bool = false;
 
+@export var enabled : bool = false;
+
 func _getPlayerMaxHealth() -> float:
 	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.red);
 	return playerMaxHealthBase * piecesMultiplier;
@@ -40,6 +42,8 @@ func updatePlayerStats():
 	attackTime = _getAttackTime();
 
 func _process(delta: float) -> void:
+	if (!enabled): return;
+	
 	if (playerRegenActive):
 		attackCooldownBar.value = 0.0;
 		playerRegen(delta);

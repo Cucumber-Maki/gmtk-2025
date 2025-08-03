@@ -109,7 +109,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/EnemyMargin/Enemy"]
 layout_mode = 2
-text = "Enemy"
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HSplitContainer/EnemyMargin/Enemy"]
