@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://43nivlwe34mu"]
+[gd_scene load_steps=5 format=3 uid="uid://43nivlwe34mu"]
 
 [ext_resource type="Script" uid="uid://clc65bxd6ouav" path="res://assets/jigsaw/jigsawPiece/jigsawPieceBase.gd" id="1_4vjdq"]
 [ext_resource type="SpriteFrames" uid="uid://dvd85j03eurp4" path="res://assets/jigsaw/jigsawPiece/jigsawPieceBase.tres" id="2_86n2d"]
+[ext_resource type="Material" uid="uid://xr778h873br7" path="res://assets/jigsaw/jigsawPiece/jigsawPieceMaterial.tres" id="2_u5nyj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7h61r"]
 size = Vector2(64, 64)
@@ -14,25 +15,48 @@ shape = SubResource("RectangleShape2D_7h61r")
 
 [node name="NorthSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_u5nyj")
 position = Vector2(0, -32)
 sprite_frames = ExtResource("2_86n2d")
 
 [node name="EastSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_u5nyj")
 position = Vector2(32, 0)
 rotation = 1.5708
 sprite_frames = ExtResource("2_86n2d")
 
 [node name="SouthSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_u5nyj")
 position = Vector2(0, 32)
 rotation = 3.14159
 sprite_frames = ExtResource("2_86n2d")
 
 [node name="WestSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_u5nyj")
 position = Vector2(-32, 0)
 rotation = 4.71239
 sprite_frames = ExtResource("2_86n2d")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "this is a test
+"
+mouse_filter = 1
+text = "1x"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

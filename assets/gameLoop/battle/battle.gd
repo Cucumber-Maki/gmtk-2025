@@ -5,7 +5,8 @@ static var s_instance : Battle = null;
 var currentEnemy : Enemy = null;
 var currentEnemyMaxHealth : float = 0.0;
 
-@export var attackTime : float = 0.8;
+@export var attackTimeBase : float = 0.8;
+@onready var attackTime := _getAttackTime();
 @onready var attackCooldown : float = attackTime;
 
 @export var playerMaxHealthBase := 10.0;
@@ -18,9 +19,15 @@ var currentEnemyMaxHealth : float = 0.0;
 @export var playerRegenActive : bool = false;
 
 func _getPlayerMaxHealth() -> float:
-	return playerMaxHealthBase; # TODO: Equation here.
+	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.red);
+	return playerMaxHealthBase * piecesMultiplier;
 func _getPlayerDamage() -> float:
-	return playerDamageBase; # TODO: Equation here.
+	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.blue);
+	return playerDamageBase * piecesMultiplier;
+func _getAttackTime() -> float:
+	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.yellow);
+	var piecesExp = pow((1 / piecesMultiplier), 0.33);
+	return attackTimeBase * piecesExp;
 
 func _ready() -> void:
 	s_instance = self;
@@ -30,6 +37,7 @@ func updatePlayerStats():
 	playerHealth += newMaxHealth - playerMaxHealth;
 	playerMaxHealth = newMaxHealth;
 	playerDamage = _getPlayerDamage();
+	attackTime = _getAttackTime();
 
 func _process(delta: float) -> void:
 	if (playerRegenActive):
