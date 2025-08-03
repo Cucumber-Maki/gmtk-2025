@@ -1,32 +1,56 @@
 extends HBoxContainer
 
-enum UpgradeResource{
-	Nubbin,
-	Niblet,
-}
 
-var _currentCost : int;
+
+var _currentCost : float;
 var _costMultiplier : float;
-var _requiredResource : UpgradeResource;
+var _requiredResource : Resources.UpgradeResource;
 
 func _ready() -> void:
-	var _buttonName : String = "Name Goes Here";
-	var _buttonHoverDescription : String = "Description";
+	$Button.button_up.connect(completePurchase);
+	
 
-	_costMultiplier = 1.07;
-	var _requiredResource : UpgradeResource;
-
-func initalSetup(buttonName : String, 
+func initialSetup(buttonName : String, 
 	buttonHover : String, 
+	baseCost : float,
 	costMultiplier : float, 
-	resource : UpgradeResource, 
+	resource : Resources.UpgradeResource, 
 	effect : Callable) -> void:
 	$Button.text = buttonName;
 	$Button.tooltip_text = buttonHover;
 	$Button.button_up.connect(effect);
 	
+	_currentCost = baseCost;
 	_costMultiplier = costMultiplier;
 	_requiredResource = resource;
+	refreshCost()
 	
+func refreshCost():
+	if _requiredResource == Resources.UpgradeResource.Niblet:
+		$Cost.text = str(getCost())+" Niblets";
+	elif _requiredResource == Resources.UpgradeResource.Nubbin:
+		$Cost.text = str(getCost())+" Nubbins";
+		
 	
+func completePurchase():
+	Resources.addResource(-_currentCost, _requiredResource)
+	_currentCost = _currentCost*_costMultiplier;
+	increaseLevel()
+	refreshCost()
+
+var _level : int = 0;
+func increaseLevel():
+	_level += 1;
+	$Level.text = str(_level)
+
+func _process(delta: float) -> void:
+	validatePurchasable()
 	
+func validatePurchasable():
+	if Resources.getResource(_requiredResource) >= getCost():
+		$Button.disabled = false;
+	else:
+		$Button.disabled = true;
+		
+func getCost():
+	return round(_currentCost);
