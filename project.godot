@@ -41,6 +41,8 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://assets/": "gray",
 "res://assets/game/": "teal",
+"res://assets/gameLoop/": "green",
+"res://assets/jigsaw/": "pink",
 "res://assets/menus/": "yellow",
 "res://assets/splashScreen/logos/": "red",
 "res://prefabs/": "orange",

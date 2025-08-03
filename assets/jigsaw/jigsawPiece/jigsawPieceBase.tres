@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dvd85j03eurp4"]
+
+[ext_resource type="Texture2D" uid="uid://bisnibiv86co8" path="res://assets/jigsaw/jigsawPiece/jigsawSpriteSheet.png" id="1_cqfbm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n50vl"]
+atlas = ExtResource("1_cqfbm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixn40"]
+atlas = ExtResource("1_cqfbm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kik3e"]
+atlas = ExtResource("1_cqfbm")
+region = Rect2(128, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n50vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixn40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kik3e")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
