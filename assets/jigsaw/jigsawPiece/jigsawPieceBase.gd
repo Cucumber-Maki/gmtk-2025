@@ -145,6 +145,18 @@ func updateSprites():
 		sprites[i].material = getMaterial(color);
 	
 	displayLabel.text = "%dx" % activeMultiplier;
+	
+	var tooltip := "";
+	match (color): 
+		Colors.red: tooltip += "Health Piece\nIncreases your Maximum Health Points!";
+		Colors.blue: tooltip += "Attack Damage Piece\nIncreases your Attack Damage!";
+		Colors.yellow: tooltip += "Attack Speed Piece\nIncreases your Attack Speed!";
+		Colors.green: tooltip += "Resource Piece\nIncreases your Nubbins gain!";
+		Colors.white: tooltip += "Production Piece\nIncreases your Niblets gain!";
+	tooltip += "\n\n";
+	tooltip += "Current Multipler Effect: %dx.\n" % activeMultiplier;
+	
+	displayLabel.tooltip_text = tooltip;
 
 func calculateMultiplier():
 	activeMultiplier = 1;
