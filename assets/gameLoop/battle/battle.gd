@@ -88,10 +88,10 @@ func updateVisuals() -> void:
 	else:
 		enemyLabel.text = currentEnemy.m_name;
 		enemyHealthbar.visible = true;
-		enemyHealthbar.value = currentEnemy.m_health;
 		enemyHealthbar.max_value = currentEnemyMaxHealth;
+		enemyHealthbar.value = currentEnemy.m_health;
 
-	playerHealthbar.value = playerHealth;
 	playerHealthbar.max_value = playerMaxHealth;
+	playerHealthbar.value = playerHealth;
 	
 	Pillar.s_instance.updateVisuals();
