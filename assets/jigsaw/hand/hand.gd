@@ -139,6 +139,7 @@ func grid_changed(pos : Vector2i, piece : JigsawPieceBase) -> void:
 		if (p == null): continue;
 		p.calculateMultiplier();
 	Battle.s_instance.updatePlayerStats();
+	Resources.calcStuff();
 	
 	
 func grid_showCantPlace(globalPos : Vector2i, show : bool) -> void:

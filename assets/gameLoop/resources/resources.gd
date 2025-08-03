@@ -39,21 +39,34 @@ func getResource(resourceType : UpgradeResource) -> float:
 		UpgradeResource.Niblet:
 			return round(currentNiblets);
 		UpgradeResource.NubbinsPerSecond:
-			return round(nubbinsPerSecond)
+			return round(nubbinsPerSecond * effectNubPS)
 		UpgradeResource.NibletsPerSecond:
-			return round(nibletsPerSecond)
+			return round(nibletsPerSecond * effectNibPS)
 	return -1
+
+var effectNubPS : float = 1.0;
+var effectNibPS : float = 1.0;
 
 var timer : float;
 func _process(delta: float) -> void:
 	timer += delta
 	if timer > 1:
-		addResource(nubbinsPerSecond, UpgradeResource.Nubbin)
-		addResource(nibletsPerSecond, UpgradeResource.Niblet)
+		addResource(getResource(UpgradeResource.NubbinsPerSecond), UpgradeResource.Nubbin);
+		addResource(getResource(UpgradeResource.NibletsPerSecond), UpgradeResource.Niblet);
 		timer -= 1;
+
+func calcStuff():
+	if (HandContainer.s_instance == null):
+		return;
+	effectNubPS = HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.green);
+	effectNibPS = HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.white);
+	nubbinsPerSecondChanged.emit()
+	nibletsPerSecondChanged.emit()
+
 
 func _ready() -> void:
 	currentNiblets = 0;
 	currentNubbins = 10;
 	nubbinsPerSecond = 0;
 	nibletsPerSecond = 0;
+	calcStuff();
