@@ -72,6 +72,8 @@ func getNextEnemy() -> Enemy:
 	return enemy;
 
 func goUpFloor() -> void:
+	Log.s_instance.logText("Floor %d cleared." % (currentFloor + 1));
+	
 	if (currentFloor < floors.size() - 1):
 		currentFloor += 1;
 	currentEnemy = 0;

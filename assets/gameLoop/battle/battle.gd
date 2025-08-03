@@ -86,6 +86,21 @@ func playerRegen(delta : float) -> void:
 		
 func enemyKilled(enemy : Enemy):
 	Log.s_instance.logText("%s killed." % enemy.m_name);
+	
+	var resourceType : Resources.UpgradeResource = [ 
+		Resources.UpgradeResource.NibletsPerSecond, 
+		Resources.UpgradeResource.NibletsPerSecond, 
+		Resources.UpgradeResource.NibletsPerSecond, 
+		Resources.UpgradeResource.NubbinsPerSecond ].pick_random();
+	
+	var resourceDropped : float = [ 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 6, 7 ].pick_random() * Resources.getResource(resourceType);
+	
+	if (resourceDropped != 0):
+		Resources.addResource(resourceDropped, resourceType - 2);
+		Log.s_instance.logText("%s dropped %.0f %s!" % [ enemy.m_name, resourceDropped, 
+		"Niblets" if resourceType == Resources.UpgradeResource.NibletsPerSecond else "Nubbins"
+	]);
+	
 
 @export var enemyRegenAlpha : float = 0.3;
 @onready var attackCooldownBar : ProgressBar = $VBoxContainer/AttackCooldown;
