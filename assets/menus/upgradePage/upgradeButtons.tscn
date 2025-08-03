@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://xy3aopgi2d6r"]
+
+[ext_resource type="Script" uid="uid://dyabbvift1d6q" path="res://assets/menus/upgradePage/upgradeButtons.gd" id="1_yuppw"]
+
+[node name="UpgradeButtons" type="VBoxContainer"]
+script = ExtResource("1_yuppw")
+
+[node name="UpgradeRowTitle" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="UpgradeRowTitle"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrade Name"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UpgradeRowTitle"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Cost"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="UpgradeRowTitle"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Level"
+horizontal_alignment = 1

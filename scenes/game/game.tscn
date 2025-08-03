@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cea0kc0y5xkmo"]
 
-[ext_resource type="PackedScene" uid="uid://2ac3swjdcvyg" path="res://assets/menus/upgradePage/upgradeRow.tscn" id="1_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://xy3aopgi2d6r" path="res://assets/menus/upgradePage/upgradeButtons.tscn" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://43nivlwe34mu" path="res://assets/game/jigsawPiece/jigsawPieceBase.tscn" id="2_0sr1o"]
-[ext_resource type="Script" uid="uid://ccqvnjjr3awv1" path="res://scenes/game/hand.gd" id="3_0sr1o"]
+[ext_resource type="Script" path="res://scenes/game/hand.gd" id="3_0sr1o"]
 
 [sub_resource type="Theme" id="Theme_7h61r"]
 HBoxContainer/constants/separation = 0
@@ -77,40 +77,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Niblets"
 
-[node name="UpgradeButtons" type="VBoxContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer"]
-layout_mode = 2
-
-[node name="UpgradeRowTitle" type="HBoxContainer" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons/UpgradeRowTitle"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Upgrade Name"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons/UpgradeRowTitle"]
-custom_minimum_size = Vector2(75, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Cost"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons/UpgradeRowTitle"]
-custom_minimum_size = Vector2(75, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Level"
-horizontal_alignment = 1
-
-[node name="UpgradeRow" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons" instance=ExtResource("1_0sr1o")]
-layout_mode = 2
-
-[node name="UpgradeRow2" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons" instance=ExtResource("1_0sr1o")]
-layout_mode = 2
-
-[node name="UpgradeRow3" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer/UpgradeButtons" instance=ExtResource("1_0sr1o")]
+[node name="UpgradeButtons" parent="CanvasLayer/HSplitContainer/UpgradePanel/Upgrades/VSplitContainer" instance=ExtResource("1_0sr1o")]
 layout_mode = 2
 
 [node name="Jigsaw" type="ColorRect" parent="CanvasLayer/HSplitContainer/UpgradePanel"]

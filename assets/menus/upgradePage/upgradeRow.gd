@@ -4,10 +4,29 @@ enum UpgradeResource{
 	Nubbin,
 	Niblet,
 }
-@export_category("Upgrade Information")
-@export var buttonName : String = "Name Goes Here";
-@export var buttonHoverDescription : String = "Description";
 
-@export_category("Upgrade Values")
-@export var costMultiplier : float = 1.07;
-@export var requiredResource : UpgradeResource;
+var _currentCost : int;
+var _costMultiplier : float;
+var _requiredResource : UpgradeResource;
+
+func _ready() -> void:
+	var _buttonName : String = "Name Goes Here";
+	var _buttonHoverDescription : String = "Description";
+
+	_costMultiplier = 1.07;
+	var _requiredResource : UpgradeResource;
+
+func initalSetup(buttonName : String, 
+	buttonHover : String, 
+	costMultiplier : float, 
+	resource : UpgradeResource, 
+	effect : Callable) -> void:
+	$Button.text = buttonName;
+	$Button.tooltip_text = buttonHover;
+	$Button.button_up.connect(effect);
+	
+	_costMultiplier = costMultiplier;
+	_requiredResource = resource;
+	
+	
+	
