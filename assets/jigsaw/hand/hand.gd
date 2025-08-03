@@ -69,7 +69,7 @@ func grid_canPlace(pos : Vector2i, piece : JigsawPieceBase) -> bool:
 		
 	# Check if connections are compatible.
 	var adjacentPieces = grid_getAdjacentPieces(pos);
-	for connectionIndex : int in len(adjacentPieces):
+	for connectionIndex : int in range(len(adjacentPieces)):
 		var adjacentPiece : JigsawPieceBase = adjacentPieces[connectionIndex];
 		if (adjacentPiece == null): continue;
 		var adjacentConnectionIndex := (connectionIndex + 2) % 4;
@@ -126,7 +126,7 @@ func grid_getAdjacentPieces(pos: Vector2i) -> Array[JigsawPieceBase]:
 	];
 	
 	var pieces : Array[JigsawPieceBase] = [];
-	for connectionIndex : int in len(adjacentCheck):
+	for connectionIndex : int in range(len(adjacentCheck)):
 		var adjacentPos := adjacentCheck[connectionIndex];
 		if (!grid_placedPieces.has(adjacentPos)): 
 			pieces.append(null);

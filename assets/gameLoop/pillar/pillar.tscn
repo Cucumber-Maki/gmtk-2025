@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://81ra0g3pbd5y"]
+
+[ext_resource type="Script" uid="uid://cpuotxiwbfeap" path="res://assets/gameLoop/pillar/pillar.gd" id="1_v0s03"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i0tg"]
+bg_color = Color(0.231373, 0.6, 0.6, 1)
+
+[node name="Pillar" type="ColorRect"]
+custom_minimum_size = Vector2(0, 120)
+color = Color(0.187948, 0.000444199, 0.410271, 1)
+script = ExtResource("1_v0s03")
+highlightStyleBox = SubResource("StyleBoxFlat_5i0tg")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="VSplitContainer"]
+layout_mode = 2
+text = "The Pillar"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VSplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 1"
+
+[node name="ProgressBar" type="ProgressBar" parent="VSplitContainer/ScrollContainer/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+max_value = 1.0
+
+[node name="Label2" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 2"
+
+[node name="Label3" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 3"
+
+[node name="Label4" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 4"
+
+[node name="Label5" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 5"
+
+[node name="Label6" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 6"
