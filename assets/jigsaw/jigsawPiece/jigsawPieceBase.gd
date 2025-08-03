@@ -1,11 +1,15 @@
 class_name JigsawPieceBase
 extends Area2D
 
-enum Colours{
-	red,
-	blue,
-	yellow,
+enum Colors {
+	red, # Health
+	blue, # Attack damage
+	yellow, # Attack speed
+	green, # Resources?
+	white, # Nubbins?
 }
+
+static var s_materials : Array[ShaderMaterial];
 
 enum ConnectorState{
 	noConnector,
@@ -25,6 +29,10 @@ var connectors : Array[ConnectorState] = []
 var grid_position := Vector2i(0, 0);
 var grid_placed := false;
 
+@export var color : Colors = Colors.red;
+
+var activeMultiplier : int = 1;
+
 var grabOffset : Vector2;
 var currentState : PieceState;
 func _ready() -> void:
@@ -33,6 +41,28 @@ func _ready() -> void:
 	#assembleSprites()
 	updateSprites();
 	add_to_group("jigsawPieces")
+	
+func getMaterial(color : Colors) -> ShaderMaterial:
+	var materialIndex : int = color;
+	
+	if (materialIndex < s_materials.size() && \
+		s_materials[materialIndex] != null): return s_materials[materialIndex];
+	
+	while (materialIndex >= s_materials.size()):
+		s_materials.append(null);
+		
+	var mat : ShaderMaterial = preload("res://assets/jigsaw/jigsawPiece/jigsawPieceMaterial.tres").duplicate();
+	mat.set_shader_parameter("u_color", [
+		Color("ff0044"),
+		Color("3300ee"),
+		Color("ffbb33"),
+		Color("55dd55"),
+		Color("ffffff"),
+	][color]);
+	mat.set_shader_parameter("u_gridOffset", -(get_parent() as HandContainer).grid_origin);
+	
+	s_materials[materialIndex] = mat;
+	return s_materials[materialIndex];
 	
 func _process(delta: float) -> void:
 	match currentState:
@@ -104,6 +134,7 @@ func assembleSprites():
 		sprite.rotate(rotation)
 		self.add_child(sprite)
 		
+@onready var displayLabel : Label = $Label;
 func updateSprites():
 	var sprites : Array[AnimatedSprite2D] = [
 		$NorthSprite, $EastSprite, $SouthSprite, $WestSprite
@@ -111,4 +142,26 @@ func updateSprites():
 	for i in range(0, min(connectors.size(), len(sprites))):
 		var connectorType = connectors[i]
 		sprites[i].frame = connectorType;
-		
+		sprites[i].material = getMaterial(color);
+	
+	displayLabel.text = "%dx" % activeMultiplier;
+
+func calculateMultiplier():
+	activeMultiplier = 1;
+	
+	if (!grid_placed):
+		updateSprites();
+		return; # TODO: Preview?
+	
+	var hand := get_parent() as HandContainer;
+	
+	var adjacent := hand.grid_getConnectedAdjacentPieces(grid_position, self);
+	for piece in adjacent:
+		if (piece == null): continue;
+		#
+		if (piece.color == color): 
+			activeMultiplier += 2;
+		else:
+			activeMultiplier += 1;
+			
+	updateSprites();

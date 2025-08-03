@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dmggogjr4bb5k"]
+
+[ext_resource type="Shader" uid="uid://c8de3opqo6r5b" path="res://assets/jigsaw/hand/handMaterial.gdshader" id="1_ouben"]
+[ext_resource type="Texture2D" uid="uid://ljwbne1kyg5x" path="res://assets/jigsaw/jigsawPiece/screenspace.png" id="2_ga8lr"]
+
+[resource]
+shader = ExtResource("1_ouben")
+shader_parameter/u_screenSpace = ExtResource("2_ga8lr")
+shader_parameter/u_gridOffset = Vector2(0, 0)
+shader_parameter/u_pointSize = 0.1
+shader_parameter/u_edgeSize = 0.05
+shader_parameter/pointColor = Color(0.333333, 0.0666667, 0.2, 1)
+shader_parameter/edgeColor = Color(0.133333, 0.133333, 0.266667, 1)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2mu7ypl0wnqm"]
+
+[ext_resource type="PackedScene" uid="uid://bbifpjh38o0od" path="res://assets/jigsaw/hand/hand.tscn" id="1_qyy6p"]
+[ext_resource type="PackedScene" uid="uid://43nivlwe34mu" path="res://assets/jigsaw/jigsawPiece/jigsawPieceBase.tscn" id="2_0t1he"]
+
+[node name="Jigsaw" type="ColorRect"]
+mouse_filter = 1
+color = Color(0.661453, 0.995601, 1, 1)
+metadata/_tab_index = 1
+
+[node name="Hand" parent="." instance=ExtResource("1_qyy6p")]
+layout_mode = 1
+
+[node name="JigsawPiece" parent="Hand" instance=ExtResource("2_0t1he")]
+position = Vector2(23.035, 64)
+
+[node name="JigsawPiece2" parent="Hand" instance=ExtResource("2_0t1he")]
+position = Vector2(40, 121)
+color = 1
+
+[node name="JigsawPiece3" parent="Hand" instance=ExtResource("2_0t1he")]
+position = Vector2(116, 121)
+color = 2
+
+[node name="JigsawPiece4" parent="Hand" instance=ExtResource("2_0t1he")]
+position = Vector2(116, 67)
+color = 3
+
+[editable path="Hand/JigsawPiece"]
