@@ -4,8 +4,8 @@
 
 [resource]
 default_font = ExtResource("1_3flai")
-default_font_size = 50
-BoxContainer/constants/separation = 5
+default_font_size = 40
+BoxContainer/constants/separation = 0
 GridContainer/constants/h_separation = 5
 GridContainer/constants/v_separation = 5
 MarginContainer/constants/margin_bottom = 8

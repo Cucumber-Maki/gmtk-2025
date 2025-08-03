@@ -1,15 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://81ra0g3pbd5y"]
+[gd_scene load_steps=6 format=3 uid="uid://81ra0g3pbd5y"]
 
+[ext_resource type="Theme" uid="uid://8jm73pmaw63g" path="res://assets/menus/_theme/theme.tres" id="1_72tm5"]
 [ext_resource type="Script" uid="uid://cpuotxiwbfeap" path="res://assets/gameLoop/pillar/pillar.gd" id="1_v0s03"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i0tg"]
-bg_color = Color(0.231373, 0.6, 0.6, 1)
+bg_color = Color(0.4, 0.466667, 0.6, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0s03"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72tm5"]
+bg_color = Color(0.533333, 0.0666667, 1, 0.407843)
+anti_aliasing = false
 
 [node name="Pillar" type="ColorRect"]
 custom_minimum_size = Vector2(0, 120)
-color = Color(0.187948, 0.000444199, 0.410271, 1)
+theme = ExtResource("1_72tm5")
 script = ExtResource("1_v0s03")
 highlightStyleBox = SubResource("StyleBoxFlat_5i0tg")
+barBackgroundBox = SubResource("StyleBoxFlat_v0s03")
+barFillBox = SubResource("StyleBoxFlat_72tm5")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
@@ -43,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 29
 max_value = 1.0
 
 [node name="Label2" type="Label" parent="VSplitContainer/ScrollContainer/VBoxContainer"]
