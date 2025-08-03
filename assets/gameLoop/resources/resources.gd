@@ -54,5 +54,6 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	currentNiblets = 0;
-	currentNubbins = 0;
-	nubbinsPerSecond = 5;
+	currentNubbins = 10;
+	nubbinsPerSecond = 0;
+	nibletsPerSecond = 0;

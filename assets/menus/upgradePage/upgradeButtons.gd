@@ -8,7 +8,9 @@ func _ready() -> void:
 	#upgrade rows
 	addUpgradeRow("Nubbin Gatherer", "A lil guy to gather you nubbins", 10, 1.2, Resources.UpgradeResource.Nubbin, func(): Resources.addResource(1, Resources.UpgradeResource.NubbinsPerSecond));
 	addUpgradeRow("Niblet Miner", "A stongy boi to get you some niblets", 100, 1.4, Resources.UpgradeResource.Nubbin, func(): Resources.addResource(1, Resources.UpgradeResource.NibletsPerSecond));
-
+	addUpgradeRow("Battle", "Lets you poke dudes to get more stuff", 5, 1, Resources.UpgradeResource.Niblet, func(): pass);
+	addUpgradeRow("Stik Embiggener", "Bigger stik hurt more", 300, 1.5, Resources.UpgradeResource.Nubbin, func(): pass);
+	addUpgradeRow("Pluk Intensifier", "More pluk make you die less", 15, 1.5, Resources.UpgradeResource.Niblet, func(): pass);
 
 func addUpgradeRow(buttonName : String, 
 	buttonHover : String, 
