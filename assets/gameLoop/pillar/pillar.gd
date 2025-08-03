@@ -4,7 +4,9 @@ static var s_instance : Pillar;
 
 var currentFloor = 0;
 var currentEnemy = 0;
-@export var floors : Array[Floor] = [];
+@export var floors : Array[float] = [];
+
+var currentFloorEnemies : Array[Enemy.Type] = [];
 
 @export var highlightStyleBox : StyleBox;
 
@@ -18,6 +20,8 @@ func _ready() -> void:
 	progressBar.set_anchors_preset(Control.PRESET_FULL_RECT);
 	progressBar.add_theme_font_size_override("font_size", 11);
 	progressBar.max_value = 1.0;
+	#
+	generateEnemies();
 	#
 	clearVisuals();
 	updateVisuals();
@@ -35,7 +39,7 @@ func updateVisuals():
 	if (Battle.s_instance != null && Battle.s_instance.currentEnemy != null):
 		progressIndex -= (Battle.s_instance.currentEnemy.m_health / Battle.s_instance.currentEnemyMaxHealth);
 	
-	progressBar.value = progressIndex / (floors[currentFloor].enemies.size() as float); 
+	progressBar.value = progressIndex / (currentFloorEnemies.size() as float); 
 
 	for i : int in range(pillarParent.get_child_count()):
 		var label : Label = pillarParent.get_child(i) as Label;
@@ -54,10 +58,10 @@ func clearVisuals():
 		n.queue_free();
 
 func getNextEnemy() -> Enemy:
-	if (floors[currentFloor].enemies.size() <= currentEnemy):
+	if (currentFloorEnemies.size() <= currentEnemy):
 		goUpFloor();
 	
-	var enemy : Enemy = Enemy.new(floors[currentFloor].enemies[currentEnemy], currentFloor); 
+	var enemy : Enemy = Enemy.new(currentFloorEnemies[currentEnemy], currentFloor); 
 	currentEnemy += 1;
 	
 	updateVisuals();
@@ -68,3 +72,50 @@ func goUpFloor() -> void:
 	if (currentFloor < floors.size() - 1):
 		currentFloor += 1;
 	currentEnemy = 0;
+	generateEnemies();
+	
+func generateEnemies() -> void:
+	var remainingWeight = floors[currentFloor];
+	
+	currentFloorEnemies = [];
+	var availableTypes : Array[Enemy.Type] = [
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Jlart,
+		Enemy.Type.Frubie,
+		Enemy.Type.Frubie,
+		Enemy.Type.Frubie,
+		Enemy.Type.Frubie,
+		Enemy.Type.Frogrogg,
+		Enemy.Type.Frogrogg,
+		Enemy.Type.Frogrogg,
+		Enemy.Type.Frogrogg,
+		Enemy.Type.Thuwart,
+		Enemy.Type.Thuwart,
+		Enemy.Type.Ruube,
+		Enemy.Type.Ruube,
+		Enemy.Type.Dazcys,
+	];
+	
+	while (availableTypes.size() > 0):
+		var t : Enemy.Type = availableTypes.pick_random();
+		#
+		var w := Enemy.getEnemyWeight(t);
+		if (w > remainingWeight): 
+			availableTypes.erase(t);
+			continue;
+		#
+		remainingWeight -= w;
+		currentFloorEnemies.append(t);
+	
+	currentFloorEnemies.sort_custom(func(a, b): 
+		return Enemy.getEnemyWeight(a) < Enemy.getEnemyWeight(b);
+	)
+	
+	if (currentFloorEnemies.size() <= 0):
+		currentFloorEnemies.append(Enemy.Type.Jlart);
