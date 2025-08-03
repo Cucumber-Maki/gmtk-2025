@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5oi5ufvsk0n5"]
+
+[ext_resource type="Script" path="res://assets/menus/upgradePage/resourceCounts.gd" id="1_a5u2r"]
+
+[node name="ResourceCounts" type="GridContainer"]
+columns = 4
+script = ExtResource("1_a5u2r")
+
+[node name="NubbinsNumber" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="NubbinsLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Nubbins"
+
+[node name="NibletsNumber" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="NibletsLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Niblets"
+
+[node name="NubbinsPerSecondNumber" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="NubbinsPerSecondLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Nub / s"
+
+[node name="NibletsPerSecondNumber" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="NibletsPerSecondLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Nib / s"
