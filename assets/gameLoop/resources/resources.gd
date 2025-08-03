@@ -3,16 +3,20 @@ extends Node
 enum UpgradeResource{
 	Nubbin,
 	Niblet,
+	NubbinsPerSecond,
+	NibletsPerSecond,
 }
 
-var currentNubbins : float;
-var currentNiblets : float;
+var currentNubbins : float = 0;
+var currentNiblets : float = 0;
 
-var nubbinsPerSecond : float;
-var nibletsPerSecond : float;
+var nubbinsPerSecond : float = 0;
+var nibletsPerSecond : float = 0;
 
 signal nubbinsChanged
 signal nibletsChanged
+signal nubbinsPerSecondChanged
+signal nibletsPerSecondChanged
 func addResource(amount : float, resourceType : UpgradeResource) -> void:
 	match resourceType:
 		UpgradeResource.Nubbin:
@@ -21,17 +25,24 @@ func addResource(amount : float, resourceType : UpgradeResource) -> void:
 		UpgradeResource.Niblet:
 			currentNiblets += amount
 			nibletsChanged.emit()
-	
-
+		UpgradeResource.NubbinsPerSecond:
+			nubbinsPerSecond += amount;
+			nubbinsPerSecondChanged.emit()
+		UpgradeResource.NibletsPerSecond:
+			nibletsPerSecond += amount;
+			nibletsPerSecondChanged.emit()
 
 func getResource(resourceType : UpgradeResource) -> float:
 	match resourceType:
 		UpgradeResource.Nubbin:
-			return currentNubbins;
+			return round(currentNubbins);
 		UpgradeResource.Niblet:
-			return currentNiblets;
-		_:
-			return currentNubbins
+			return round(currentNiblets);
+		UpgradeResource.NubbinsPerSecond:
+			return round(nubbinsPerSecond)
+		UpgradeResource.NibletsPerSecond:
+			return round(nibletsPerSecond)
+	return -1
 
 var timer : float;
 func _process(delta: float) -> void:

@@ -7,8 +7,6 @@ var _costMultiplier : float;
 var _requiredResource : Resources.UpgradeResource;
 
 func _ready() -> void:
-#	default value
-	_costMultiplier = 1.07;
 	$Button.button_up.connect(completePurchase);
 	
 
@@ -29,22 +27,30 @@ func initialSetup(buttonName : String,
 	
 func refreshCost():
 	if _requiredResource == Resources.UpgradeResource.Niblet:
-		$Cost.text = str(_currentCost)+" Niblets";
+		$Cost.text = str(getCost())+" Niblets";
 	elif _requiredResource == Resources.UpgradeResource.Nubbin:
-		$Cost.text = str(_currentCost)+" Nubbins";
+		$Cost.text = str(getCost())+" Nubbins";
 		
 	
 func completePurchase():
 	Resources.addResource(-_currentCost, _requiredResource)
 	_currentCost = _currentCost*_costMultiplier;
+	increaseLevel()
 	refreshCost()
+
+var _level : int = 0;
+func increaseLevel():
+	_level += 1;
+	$Level.text = str(_level)
 
 func _process(delta: float) -> void:
 	validatePurchasable()
 	
 func validatePurchasable():
-	if Resources.getResource(_requiredResource) >= _currentCost:
+	if Resources.getResource(_requiredResource) >= getCost():
 		$Button.disabled = false;
 	else:
 		$Button.disabled = true;
 		
+func getCost():
+	return round(_currentCost);

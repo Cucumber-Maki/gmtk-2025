@@ -3,6 +3,12 @@ extends GridContainer
 func _ready() -> void:
 	Resources.nubbinsChanged.connect(updateNubbins)
 	Resources.nibletsChanged.connect(updateNiblets)
+	Resources.nubbinsPerSecondChanged.connect(updateNubbinsPerSecond)
+	Resources.nibletsPerSecondChanged.connect(updateNibletsPerSecond)
+	updateNubbins()
+	updateNiblets()
+	updateNubbinsPerSecond()
+	updateNibletsPerSecond()
 	
 	
 	
@@ -15,9 +21,9 @@ func updateNiblets() -> void:
 	$NibletsNumber.text = str(newValue);
 
 func updateNubbinsPerSecond() -> void:
-	pass; 
-#	TODO
+	var newValue : float= Resources.getResource(Resources.UpgradeResource.NubbinsPerSecond);
+	$NubbinsPerSecondNumber.text = str(newValue);
 
 func updateNibletsPerSecond() -> void:
-	pass;
-#	TODO
+	var newValue : float= Resources.getResource(Resources.UpgradeResource.NibletsPerSecond);
+	$NibletsPerSecondNumber.text = str(newValue);

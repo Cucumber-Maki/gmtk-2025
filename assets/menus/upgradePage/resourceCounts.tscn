@@ -37,7 +37,7 @@ horizontal_alignment = 1
 [node name="NubbinsPerSecondLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Nubbins"
+text = "Nub / s"
 
 [node name="NibletsPerSecondNumber" type="Label" parent="."]
 layout_mode = 2
@@ -48,4 +48,4 @@ horizontal_alignment = 1
 [node name="NibletsPerSecondLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Niblets"
+text = "Nib / s"
