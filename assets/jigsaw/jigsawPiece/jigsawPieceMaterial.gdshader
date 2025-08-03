@@ -12,5 +12,5 @@ void fragment() {
 	
 	vec4 baseColor = texture(TEXTURE, UV);
 	vec3 col = baseColor.rgb * u_color * screenColor.rgb;
-	COLOR = vec4(col, baseColor.a);
+	COLOR *= vec4(col, baseColor.a);
 }

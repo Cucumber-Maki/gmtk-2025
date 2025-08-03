@@ -7,6 +7,7 @@ enum Colors {
 	yellow, # Attack speed
 	green, # Resources?
 	white, # Nubbins?
+	COUNT
 }
 
 static var s_materials : Array[ShaderMaterial];
@@ -29,7 +30,7 @@ var connectors : Array[ConnectorState] = []
 var grid_position := Vector2i(0, 0);
 var grid_placed := false;
 
-@export var color : Colors = Colors.red;
+@onready var color : Colors = randi_range(0, Colors.COUNT - 1);
 
 var activeMultiplier : int = 1;
 
@@ -57,7 +58,7 @@ func getMaterial(color : Colors) -> ShaderMaterial:
 		Color("3300ee"),
 		Color("ffbb33"),
 		Color("55dd55"),
-		Color("ffffff"),
+		Color("99aabb"),
 	][color]);
 	mat.set_shader_parameter("u_gridOffset", -(get_parent() as HandContainer).grid_origin);
 	
@@ -136,6 +137,11 @@ func assembleSprites():
 		
 @onready var displayLabel : Label = $Label;
 func updateSprites():
+	if (!grid_placed):
+		modulate.a = 0.5;
+	else:
+		modulate.a = 1.0;
+	
 	var sprites : Array[AnimatedSprite2D] = [
 		$NorthSprite, $EastSprite, $SouthSprite, $WestSprite
 	];
@@ -144,18 +150,20 @@ func updateSprites():
 		sprites[i].frame = connectorType;
 		sprites[i].material = getMaterial(color);
 	
-	displayLabel.text = "%dx" % activeMultiplier;
+	displayLabel.text = "+%dx" % activeMultiplier;
 	
 	var tooltip := "";
 	match (color): 
 		Colors.red: tooltip += "Health Piece\nIncreases your Maximum Health Points!";
 		Colors.blue: tooltip += "Attack Damage Piece\nIncreases your Attack Damage!";
-		Colors.yellow: tooltip += "Attack Speed Piece\nIncreases your Attack Speed!";
+		Colors.yellow: tooltip += "Battle Speed Piece\nIncreases your Battling Speed!";
 		Colors.green: tooltip += "Resource Piece\nIncreases your Nubbins gain!";
 		Colors.white: tooltip += "Production Piece\nIncreases your Niblets gain!";
 	tooltip += "\n\n";
 	tooltip += "Current Multipler Effect: %dx.\n" % activeMultiplier;
-	
+	if (HandContainer.s_instance != null):
+		tooltip += "Total Effect: %.0fx\n" % HandContainer.s_instance.getMutliplierOfColor(color);
+		
 	displayLabel.tooltip_text = tooltip;
 
 func calculateMultiplier():

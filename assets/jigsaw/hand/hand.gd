@@ -1,6 +1,6 @@
 extends Container
 class_name HandContainer;
-static var s_instance;
+static var s_instance : HandContainer = null;
 
 @export var backgroundMat : ShaderMaterial;
 
@@ -47,6 +47,12 @@ func getPiecesOfColor(color : JigsawPieceBase.Colors) -> Array[JigsawPieceBase]:
 		if (child.color == color):
 			pieces.append(child as JigsawPieceBase);
 	return pieces;
+func getMutliplierOfColor(color : JigsawPieceBase.Colors) -> float:
+	var pieces := HandContainer.s_instance.getPiecesOfColor(color);
+	var piecesMultiplier := 1.0;
+	for piece in pieces:
+		piecesMultiplier += piece.activeMultiplier;
+	return piecesMultiplier;
 
 ######################################################################################################
 	
@@ -68,7 +74,8 @@ func _input(event: InputEvent) -> void:
 			grid_origin = mousePos + drag_offset;
 			backgroundMat.set_shader_parameter("u_gridOffset", -grid_origin.round());
 			for mat : ShaderMaterial in JigsawPieceBase.s_materials:
-				mat.set_shader_parameter("u_gridOffset", -grid_origin.round());
+				if (mat != null):
+					mat.set_shader_parameter("u_gridOffset", -grid_origin.round());
 			for child in get_children():
 				if (child is not JigsawPieceBase): continue;
 				child.updatePosition();
@@ -112,11 +119,8 @@ func grid_place(pos : Vector2i, piece : JigsawPieceBase) -> bool:
 	piece.updatePosition();
 	piece.z_index = 0;
 	
-	piece.calculateMultiplier();
-	for p in grid_getAdjacentPieces(pos):
-		if (p == null): continue;
-		p.calculateMultiplier();
-	
+	grid_changed(pos, piece);
+
 	return true;
 
 func grid_pickup(piece : JigsawPieceBase) -> void:
@@ -127,11 +131,15 @@ func grid_pickup(piece : JigsawPieceBase) -> void:
 	grid_placedPieces.erase(pos);
 	piece.grid_placed = false;
 	piece.z_index = max(piece.z_index, 2);
+	grid_changed(pos, piece);
 	
+func grid_changed(pos : Vector2i, piece : JigsawPieceBase) -> void:
 	piece.calculateMultiplier();
 	for p in grid_getAdjacentPieces(pos):
 		if (p == null): continue;
 		p.calculateMultiplier();
+	Battle.s_instance.updatePlayerStats();
+	
 	
 func grid_showCantPlace(globalPos : Vector2i, show : bool) -> void:
 	$CantPlace.visible = show;

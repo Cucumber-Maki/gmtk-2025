@@ -101,15 +101,12 @@ position = Vector2(23.035, 64)
 
 [node name="JigsawPiece2" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(40, 121)
-color = 1
 
 [node name="JigsawPiece3" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(116, 121)
-color = 2
 
 [node name="JigsawPiece4" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(116, 67)
-color = 3
 
 [node name="JigsawPiece5" parent="CanvasLayer/HSplitContainer/UpgradePanel/Jigsaw/Hand" instance=ExtResource("2_0sr1o")]
 position = Vector2(23.035, 64)

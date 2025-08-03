@@ -16,14 +16,11 @@ position = Vector2(23.035, 64)
 
 [node name="JigsawPiece2" parent="Hand" instance=ExtResource("2_0t1he")]
 position = Vector2(40, 121)
-color = 1
 
 [node name="JigsawPiece3" parent="Hand" instance=ExtResource("2_0t1he")]
 position = Vector2(116, 121)
-color = 2
 
 [node name="JigsawPiece4" parent="Hand" instance=ExtResource("2_0t1he")]
 position = Vector2(116, 67)
-color = 3
 
 [editable path="Hand/JigsawPiece"]
