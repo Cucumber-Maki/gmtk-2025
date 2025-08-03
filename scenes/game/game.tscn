@@ -132,7 +132,7 @@ color = Color(0.133333, 0.133333, 0.266667, 1)
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 color = Color(0.266667, 0.266667, 0.4, 1)
-floors = Array[float]([10.0, 40.0, 50.0, 60.0])
+floors = Array[float]([10.0, 40.0, 50.0, 60.0, 50.0, 60.0, 80.0, 90.0, 50.0, 100.0, 110.0, 130.0, 70.0, 80.0, 80.0, 80.0, 60.0, 50.0, 80.0, 100.0, 110.0, 140.0, 160.0, 180.0, 200.0, 200.0, 200.0, 200.0, 200.0, 300.0])
 
 [node name="Battle" parent="CanvasLayer/MarginContainer/HSplitContainer/VBoxContainer" instance=ExtResource("6_5i0tg")]
 layout_mode = 2

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://xr778h873br7"]
 
-[ext_resource type="Shader" uid="uid://dy5snvvtyrsdr" path="res://assets/jigsaw/jigsawPiece/jigsawPieceMaterial.gdshader" id="1_3ttlf"]
+[ext_resource type="Shader" path="res://assets/jigsaw/jigsawPiece/jigsawPieceMaterial.gdshader" id="1_3ttlf"]
 [ext_resource type="Texture2D" uid="uid://ljwbne1kyg5x" path="res://assets/jigsaw/jigsawPiece/screenspace.png" id="2_v4lnw"]
 
 [resource]
