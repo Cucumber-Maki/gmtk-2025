@@ -70,3 +70,6 @@ func _ready() -> void:
 	nubbinsPerSecond = 0;
 	nibletsPerSecond = 0;
 	calcStuff();
+
+var resourceAttackBonus: float = 0;
+var resourceHealthBonus: float = 0;

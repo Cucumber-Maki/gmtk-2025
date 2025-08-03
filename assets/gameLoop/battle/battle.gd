@@ -22,10 +22,12 @@ var currentEnemyMaxHealth : float = 0.0;
 
 func _getPlayerMaxHealth() -> float:
 	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.red);
-	return playerMaxHealthBase * piecesMultiplier;
+	var resourceBonus = Resources.resourceHealthBonus;
+	return (playerMaxHealthBase + resourceBonus) * piecesMultiplier;
 func _getPlayerDamage() -> float:
 	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.blue);
-	return playerDamageBase * piecesMultiplier;
+	var resourceBonus = Resources.resourceAttackBonus;
+	return (playerDamageBase + resourceBonus) * piecesMultiplier;
 func _getAttackTime() -> float:
 	var piecesMultiplier := HandContainer.s_instance.getMutliplierOfColor(JigsawPieceBase.Colors.yellow);
 	var piecesExp = pow((1 / piecesMultiplier), 0.33);

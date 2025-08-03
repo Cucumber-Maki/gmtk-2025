@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5oi5ufvsk0n5"]
 
-[ext_resource type="Script" path="res://assets/menus/upgradePage/resourceCounts.gd" id="1_a5u2r"]
+[ext_resource type="Script" uid="uid://d00r7hj3snnmj" path="res://assets/menus/upgradePage/resourceCounts.gd" id="1_a5u2r"]
 
 [node name="ResourceCounts" type="GridContainer"]
 columns = 4
