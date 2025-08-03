@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxc6gcyp5h2hr"]
+
+[ext_resource type="Script" uid="uid://c762j2pedud6j" path="res://assets/gameLoop/log/log.gd" id="1_ycscn"]
+
+[node name="Log" type="ColorRect"]
+custom_minimum_size = Vector2(0, 100)
+color = Color(0.0198819, 0, 0.50636, 1)
+script = ExtResource("1_ycscn")
+
+[node name="SplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="SplitContainer"]
+layout_mode = 2
+text = "Log"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="SplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 1"
+
+[node name="Label2" type="Label" parent="SplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 2"
+
+[node name="Label3" type="Label" parent="SplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 3"
+
+[node name="Label4" type="Label" parent="SplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 4"
+
+[node name="Label5" type="Label" parent="SplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 5"
+
+[node name="Label6" type="Label" parent="SplitContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test 6"
